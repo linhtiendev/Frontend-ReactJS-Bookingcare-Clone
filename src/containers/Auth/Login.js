@@ -9,8 +9,45 @@ class Login extends Component {
     // ham de khai bao state
     constructor(props) {
         super(props);
+        this.state = {
+            username: "",
+            password: "",
+            // Biến đặt là false để không hiện password
+            isShowPassword: false,
+        };
     }
+    // Biến state thực chất là 1 object
+    // state sinh ra để kiểm soát giá trị của các biến trong cponent đang sd
+    handleOnChangeUsername = (event) => {
+        // Hàm cập nhật lại biến State
+        this.setState({
+            username: event.target.value,
+        });
+    };
+    handleOnChangePassword = (event) => {
+        // Hàm cập nhật lại biến State
+        this.setState({
+            password: event.target.value,
+        });
+    };
+    // Hàm lấy giá trị của username và password
+    handleLogin = () => {
+        console.log(
+            "Username: ",
+            this.state.username,
+            "Password: ",
+            this.state.password
+        );
+        console.log("all state", this.state);
+    };
 
+    // Hàm thay đổi giá trị của password
+    handleShowHidePassword = () => {
+        // Dấu ! sẽ lấy giá trị ngược lại của biến hiện tại (isShowPassword: false)
+        this.setState({
+            isShowPassword: !this.state.isShowPassword,
+        });
+    };
     render() {
         //JSX
         // ham return render ra 1 khối
@@ -25,18 +62,57 @@ class Login extends Component {
                                 type="text"
                                 className="form-control"
                                 placeholder="Enter your username"
+                                // Đặt giá trị cho input
+                                value={this.state.username}
+                                // Sự kiện Onchange
+                                // biến event là event của html đang có
+                                onChange={(event) => {
+                                    this.handleOnChangeUsername(event);
+                                }}
                             />
                         </div>
                         <div className="col-12 form-group login-input">
                             <label>Password:</label>
-                            <input
-                                type="password"
-                                className="form-control"
-                                placeholder="Enter your password"
-                            />
+                            <div className="custom-input-password">
+                                <input
+                                    className="form-control"
+                                    //check điều kiện show password
+                                    type={
+                                        this.state.isShowPassword
+                                            ? "text"
+                                            : "password"
+                                    }
+                                    placeholder="Enter your password"
+                                    value={this.state.password}
+                                    onChange={(event) => {
+                                        this.handleOnChangePassword(event);
+                                    }}
+                                />
+                                <span
+                                    onClick={() => {
+                                        this.handleShowHidePassword();
+                                    }}
+                                >
+                                    <i
+                                        className={
+                                            this.state.isShowPassword
+                                                ? "fas fa-eye"
+                                                : "fas fa-eye-slash"
+                                        }
+                                    ></i>
+                                </span>
+                            </div>
                         </div>
                         <div className="col-12">
-                            <button className="btn-login">Login</button>
+                            <button
+                                className="btn-login"
+                                // Sự kiện onClick
+                                onClick={() => {
+                                    this.handleLogin();
+                                }}
+                            >
+                                Login
+                            </button>
                         </div>
                         <div className="col-12 forgot-password">
                             <span>Forgot your password?</span>

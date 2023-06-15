@@ -10,9 +10,12 @@
     .login-container {
         width: 380px;
         height: 480px;
-        margin: 0 auto;
         background-color: white;
-        border-radius: 18px;
+        border-radius: 20px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
         .login-content {
             padding: 15px;
             .login-text {
@@ -23,6 +26,15 @@
             }
             .login-input {
                 margin: 9px 0;
+                .custom-input-password {
+                    position: relative;
+                    i {
+                        position: absolute;
+                        right: 10px;
+                        top: 10px;
+                        cursor: pointer; // Hiện bàn tay khi di chuột
+                    }
+                }
             }
             .btn-login {
                 color: white;
