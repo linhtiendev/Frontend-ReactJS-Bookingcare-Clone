@@ -3,12 +3,15 @@ import { FormattedMessage } from "react-intl";
 import { connect } from "react-redux";
 import "./UserManage.scss";
 import { getAllUsers } from "../../services/userService";
+import ModalUser from "./ModalUser";
+
 class UserManage extends Component {
     //Khai báo theo chuẩn React
     constructor(props) {
         super(props);
         this.state = {
             arrUsers: [],
+            isOpenModalUser: false,
         };
     }
 
@@ -21,15 +24,26 @@ class UserManage extends Component {
             });
         }
     }
+    handleAddNewUser = () => {
+        this.setState({
+            isOpenModalUser: true,
+        });
+    };
+
+    toggleUserModal = () => {
+        this.setState({
+            isOpenModalUser: !this.state.isOpenModalUser,
+        });
+    };
 
     /**
      * Life cycle (vòng đời)
     run component:
     1. Run constructer -> init state (biến muốn dùng)
-    2. Did mount (set state. Khi muốn gán giá trị trong biến state thì dùng)
+    2. Did mount (set state. Khi muốn gán giá trị trong biến state thì dùng) / born / unmout
     - gọi API, set state
     - state có nhiệm vụ lưu trữ các giá trị của các biến
-    3. Render
+    3. Render / re-reder
     - dùng state trong render sẽ render cho cta thấy
      */
 
@@ -37,9 +51,24 @@ class UserManage extends Component {
 
     render() {
         let arrUsers = this.state.arrUsers;
+        // properties ; nested
         return (
             <div className="users-container">
+                <ModalUser
+                    isOpen={this.state.isOpenModalUser}
+                    toggleFromParent={this.toggleUserModal}
+                    test={"hello modal"}
+                />
                 <div className="title text-center">Manage Users</div>
+                <div>
+                    <button
+                        className="btn-add-user btn btn-primary px-3 mx-3"
+                        onClick={() => this.handleAddNewUser()}
+                    >
+                        Add new users
+                        <i className="fas fa-user-plus"></i>
+                    </button>
+                </div>
                 <div className="user-table mt-3 mx-3">
                     <table id="customers">
                         <tr>
@@ -51,7 +80,6 @@ class UserManage extends Component {
                         </tr>
                         {arrUsers &&
                             arrUsers.map((item, index) => {
-                                console.log("LITI check map", item, index);
                                 return (
                                     <tr key={index}>
                                         <td>{item.email}</td>
