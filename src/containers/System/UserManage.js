@@ -2,8 +2,9 @@ import React, { Component } from "react";
 import { FormattedMessage } from "react-intl";
 import { connect } from "react-redux";
 import "./UserManage.scss";
-import { getAllUsers } from "../../services/userService";
+import { getAllUsers, createNewUserService } from "../../services/userService";
 import ModalUser from "./ModalUser";
+import { after } from "lodash";
 
 class UserManage extends Component {
     //Khai báo theo chuẩn React
@@ -17,13 +18,18 @@ class UserManage extends Component {
 
     // Goi API
     async componentDidMount() {
+        await this.getAllUsersFromReact();
+    }
+
+    getAllUsersFromReact = async () => {
         let response = await getAllUsers("ALL");
         if (response && response.errCode === 0) {
             this.setState({
                 arrUsers: response.users,
             });
         }
-    }
+    };
+
     handleAddNewUser = () => {
         this.setState({
             isOpenModalUser: true,
@@ -34,6 +40,22 @@ class UserManage extends Component {
         this.setState({
             isOpenModalUser: !this.state.isOpenModalUser,
         });
+    };
+
+    createNewUser = async (data) => {
+        try {
+            let response = await createNewUserService(data);
+            if (response && response.errCode !== 0) {
+                alert(response.errMessage);
+            } else {
+                await this.getAllUsersFromReact();
+                this.setState({
+                    isOpenModalUser: false,
+                });
+            }
+        } catch (e) {
+            console.log(e);
+        }
     };
 
     /**
@@ -57,7 +79,7 @@ class UserManage extends Component {
                 <ModalUser
                     isOpen={this.state.isOpenModalUser}
                     toggleFromParent={this.toggleUserModal}
-                    test={"hello modal"}
+                    createNewUser={this.createNewUser}
                 />
                 <div className="title text-center">Manage Users</div>
                 <div>
@@ -71,32 +93,34 @@ class UserManage extends Component {
                 </div>
                 <div className="user-table mt-3 mx-3">
                     <table id="customers">
-                        <tr>
-                            <th>Email</th>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>Address</th>
-                            <th>Actions</th>
-                        </tr>
-                        {arrUsers &&
-                            arrUsers.map((item, index) => {
-                                return (
-                                    <tr key={index}>
-                                        <td>{item.email}</td>
-                                        <td>{item.firstName}</td>
-                                        <td>{item.lastName}</td>
-                                        <td>{item.address}</td>
-                                        <td>
-                                            <button className="btn-edit">
-                                                <i className="fas fa-pencil-alt"></i>
-                                            </button>
-                                            <button className="btn-delete">
-                                                <i className="fas fa-trash"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                );
-                            })}
+                        <tbody>
+                            <tr>
+                                <th>Email</th>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Address</th>
+                                <th>Actions</th>
+                            </tr>
+                            {arrUsers &&
+                                arrUsers.map((item, index) => {
+                                    return (
+                                        <tr key={index}>
+                                            <td>{item.email}</td>
+                                            <td>{item.firstName}</td>
+                                            <td>{item.lastName}</td>
+                                            <td>{item.address}</td>
+                                            <td>
+                                                <button className="btn-edit">
+                                                    <i className="fas fa-pencil-alt"></i>
+                                                </button>
+                                                <button className="btn-delete">
+                                                    <i className="fas fa-trash"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    );
+                                })}
+                        </tbody>
                     </table>
                 </div>
             </div>
