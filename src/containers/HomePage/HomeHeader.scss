@@ -2,19 +2,21 @@
     height: 70px;
     //border: 1px solid red;
     width: 100%;
-    padding: 0 20px;
+    padding: 0 40px;
     .home-header-content {
         width: 100%;
         height: 100%;
         display: flex;
         .left-content {
-            width: 25%;
+            width: 20%;
             display: flex;
             align-items: center;
             .header-logo {
                 background: url("../../assets/logo.svg") center center no-repeat;
                 height: 100%;
                 width: 100%;
+                cursor: pointer;
+                background-size: 42% 100%;
             }
             i {
                 font-size: 25px;
@@ -23,10 +25,10 @@
             }
         }
         .center-content {
-            width: 50%;
+            width: 60%;
             display: flex;
             align-items: center;
-            justify-content: space-between;
+            justify-content: space-around;
             .child-content {
                 .subs-title {
                     font-weight: 400;
@@ -35,13 +37,40 @@
             }
         }
         .right-content {
-            width: 25%;
+            width: 20%;
             display: flex;
             align-items: center;
-            justify-content: center;
-            flex-direction: column;
+            justify-content: flex-end;
+            flex-direction: row;
             .support {
+                padding-right: 50px;
+                cursor: pointer;
+                &:hover {
+                    color: #0ec1e1;
+                }
                 i {
+                    margin-right: 5px;
+                    color: #0ec1e1;
+                }
+            }
+            .language-vi {
+                font-size: 17px;
+                cursor: pointer;
+                &:hover {
+                    color: #0ec1e1;
+                }
+                &.active {
+                    color: #0ec1e1;
+                }
+            }
+            .language-en {
+                font-size: 17px;
+                margin: 0 10px;
+                cursor: pointer;
+                &:hover {
+                    color: #0ec1e1;
+                }
+                &.active {
                     color: #0ec1e1;
                 }
             }
@@ -49,7 +78,7 @@
     }
 }
 .home-header-banner {
-    background: url("../../assets/header-background.jpg");
+    background-image: url("../../assets/header-background.jpg");
     height: 485px;
     background-repeat: no-repeat;
     background-size: cover;
@@ -57,7 +86,11 @@
     display: flex;
     flex-direction: column;
     .home-header-banner-up {
-        height: 50%;
+        background-image: linear-gradient(
+            rgba(0, 0, 0, 0.25),
+            rgba(255, 255, 255, 0.1)
+        );
+        height: 65%;
         padding-top: 15px;
         .title-banner-top {
             text-align: center;
@@ -95,7 +128,15 @@
         }
     }
     .home-header-banner-down {
-        height: 50%;
+        height: 35%;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        background-image: linear-gradient(
+            rgba(255, 255, 255, 0.1),
+            rgba(255, 255, 255, 0.9),
+            rgba(255, 255, 255, 1)
+        );
         .options {
             text-align: center;
             display: flex;

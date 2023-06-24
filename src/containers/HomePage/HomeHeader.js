@@ -51,7 +51,8 @@ class HomeHeader extends Component {
                                 <i className="fas fa-envelope"></i>
                                 Hỗ trợ
                             </div>
-                            <div className="flag">VN</div>
+                            <div className="language-vi">VN</div>
+                            <div className="language-en">EN</div>
                         </div>
                     </div>
                 </div>
