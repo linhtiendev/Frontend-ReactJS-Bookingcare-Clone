@@ -91,7 +91,7 @@
 }
 .home-header-banner {
     background-image: url("../../assets/header-background.jpg");
-    height: 485px;
+    height: 640px;
     background-repeat: no-repeat;
     background-size: cover;
     background-position: 50% 30%;
@@ -109,11 +109,11 @@
             font-size: 35px;
             text-shadow: 1px 1px 1px #333;
             color: rgb(220, 220, 220);
-            margin-top: 40px;
+            margin-top: 75px;
         }
         .title-banner-center {
             text-align: center;
-            font-size: 30px;
+            font-size: 40px;
             text-shadow: 1px 1px 1px #333;
             color: rgb(230, 228, 228);
             margin-bottom: 30px;
@@ -144,7 +144,7 @@
         display: flex;
         align-items: flex-end;
         justify-content: center;
-        padding-bottom: 40px;
+        padding-bottom: 80px;
         background-image: linear-gradient(
             rgba(255, 255, 255, 0.1),
             rgba(255, 255, 255, 0.9),
