@@ -34,6 +34,47 @@
     &.section-outstanding-doctor {
         background: #f5f5f5;
     }
+    &.section-about {
+        background: #f5f5f5;
+        height: 500px !important;
+        padding: 0 100px !important;
+        .section-about-header {
+            font-size: 22px;
+            font-weight: 600;
+            padding: 20px;
+        }
+        .section-about-content {
+            padding: 0 20px !important;
+            display: flex;
+            gap: 15px;
+            .content-left {
+                width: 50%;
+            }
+            .content-right {
+                font-size: 16px;
+                font-weight: 600;
+                width: 50%;
+                .content-right-blog {
+                    display: flex;
+                    gap: 10px;
+                    .blog-left {
+                        background-position: center !important;
+                        background-repeat: no-repeat !important;
+                        height: 50px;
+                        width: 190px;
+                        background-image: url(../../assets/about/suckhoedoisong.png);
+                    }
+                    .blog-right {
+                        background-position: center !important;
+                        background-repeat: no-repeat !important;
+                        height: 50px;
+                        width: 190px;
+                        background-image: url(../../assets/about/infonet.png);
+                    }
+                }
+            }
+        }
+    }
 
     .section-body {
         //reset slick slider css
@@ -73,7 +114,6 @@
 
 .section-share {
     height: 330px;
-
     .section-container {
         margin: 0 130px;
         display: flex;
@@ -121,5 +161,19 @@
             padding: 20px;
             border: 1px solid gray;
         }
+    }
+}
+
+.section-homefooter {
+    font-size: 13px;
+    font-weight: bold;
+    padding-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #64b9e5;
+    height: 70px;
+    a {
+        text-decoration: none;
     }
 }
