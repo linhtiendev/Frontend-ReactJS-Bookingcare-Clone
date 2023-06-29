@@ -8,7 +8,9 @@
         "select-doctor": "Chọn bác sĩ giỏi",
         "fee": "Gói khám",
         "check-health": "Khám sức khỏe tổng quát",
-        "support": "Hỗ trợ"
+        "support": "Hỗ trợ",
+        "welcome": "Xin chào, "
+
     },
     "banner":{
         "title-top": "NỀN TẢNG Y TẾ",
