@@ -1,0 +1,21 @@
+.preview-img-container {
+    .upload-img {
+        padding: 5px;
+        border-radius: 3px;
+        background: #e3f37d;
+        cursor: pointer;
+        .fas {
+            margin-left: 7px;
+        }
+        &:hover {
+            opacity: 0.8;
+        }
+    }
+    .preview-image {
+        height: 50px;
+        width: 100%;
+        background: center no-repeat;
+        background-size: contain;
+        cursor: pointer;
+    }
+}
